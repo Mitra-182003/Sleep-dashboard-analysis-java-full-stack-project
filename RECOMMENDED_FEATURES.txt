@@ -1,0 +1,175 @@
+DREAMBETTER - RECOMMENDED FEATURES
+===================================
+
+Product direction
+-----------------
+DreamBetter should be a Java full-stack sleep and wellness platform. The frontend can remain a browser UI, but production business logic, authentication integration, validation, APIs, and persistence should be implemented with Java/Spring Boot. Do not add a Node.js backend.
+
+Features recommended for the next releases
+-------------------------------------------
+1. First-time onboarding
+   - Ask for sleep target, usual bedtime, wake time, timezone, and goals.
+   - Show a short progress checklist before the first dashboard visit.
+
+2. Zero-data and empty-state experience
+   - New accounts begin with zero metrics and no fabricated sleep records.
+   - Guide the user to log the first session and lifestyle record.
+   - Keep empty states informative, accessible, and actionable.
+
+3. Professional navigation and accessibility
+   - Keep the active-page indicator, keyboard focus states, tooltips, and mobile drawer.
+   - Add breadcrumbs on deeper screens.
+   - Use semantic labels and announce toast/status messages to screen readers.
+
+4. Sleep logging improvements
+   - Date selection, naps, awakenings, sleep interruptions, sleep location, and notes.
+   - Validate that wake time and bedtime form a valid duration.
+   - Allow users to edit, delete, and duplicate a previous entry.
+
+5. Lifestyle tracking
+   - Track caffeine, exercise, screen time, stress, alcohol, meals, medication, and naps.
+   - Let users create custom lifestyle fields.
+
+6. Analytics
+   - Weekly and monthly trends, rolling averages, sleep debt, consistency score,
+     bedtime variance, and correlations with lifestyle habits.
+   - Provide date filters and exportable charts.
+
+7. Goals and reminders
+   - Sleep-duration, bedtime, wake-time, and habit goals.
+   - Recurring reminders with timezone-aware scheduling.
+   - Streaks, milestones, and gentle recovery messaging after a missed goal.
+
+8. Gemini AI insights
+   - Generate explanations and recommendations only from the user's authorized data.
+   - Show the data range used, a confidence note, and a medical-safety disclaimer.
+   - Add an AI chat for sleep questions with prompt and response audit logging.
+   - Never present a diagnosis; recommend a qualified professional for concerning symptoms.
+
+9. Authentication and account security
+   - Supabase Authentication for Google sign-in.
+   - Supabase phone authentication with mobile SMS OTP verification.
+   - Link Google and phone identities to one account after explicit confirmation.
+   - Add logout, session expiry, password recovery, account deletion, and consent screens.
+
+10. Supabase data layer
+    - Use Supabase Postgres as the application database through a secure Java API.
+    - Add row-level ownership policies and never expose service-role keys to the browser.
+    - Store users, sleep logs, lifestyle logs, goals, reminders, insights, and audit records.
+
+11. Reports and sharing
+    - PDF/CSV export, date-range reports, printable clinician summary, and consent-based sharing.
+
+12. Production quality
+    - Unit, integration, API contract, accessibility, and end-to-end tests.
+    - Centralized error handling, structured logs, rate limiting, input validation, and monitoring.
+    - Responsive design, reduced-motion support, loading skeletons, offline draft protection,
+      and clear recovery messages for failed network requests.
+
+Unique features to differentiate DreamBetter
+---------------------------------------------
+13. Personal sleep chronotype
+    - Estimate whether a user is naturally an early bird, intermediate, or night owl from
+      consistent sleep and wake patterns.
+    - Compare the user's actual schedule with their preferred chronotype without judging
+      the user or prescribing a medical conclusion.
+    - Recommend realistic bedtime adjustments in small 15-minute steps.
+
+14. Sleep environment score
+    - Let users record bedroom light, noise, temperature, mattress comfort, pets, and
+      interruptions.
+    - Produce an environment score and show which environmental factors correlate with
+      better sleep for that individual.
+    - Add optional integrations later for supported wearable, smart-light, or smart-home data.
+
+15. Smart wind-down routine
+    - Create a personalized 20-, 30-, or 60-minute bedtime routine from selected activities
+      such as breathing, stretching, reading, journaling, and screen-free time.
+    - Show a calm step-by-step mode with soft animation, audio controls, and a completion streak.
+    - Allow the user to pause or skip steps without losing the session.
+
+16. Recovery mode
+    - Detect a missed goal or unusually short night and switch the dashboard to a supportive
+      recovery plan instead of showing punitive streak messaging.
+    - Suggest a safe, practical plan for the next 24 hours: light exposure, caffeine timing,
+      a consistent wake time, and an optional short nap.
+    - Avoid medical advice and display a clear safety disclaimer.
+
+17. Sleep consistency passport
+    - Award badges for stable wake time, reduced bedtime variance, completed routines, and
+      healthy habit experiments rather than only rewarding total hours.
+    - Make badges private by default and let users share a selected achievement card.
+    - Include a monthly personal best timeline.
+
+18. Personal sleep experiments
+    - Let users create an A/B experiment such as “no caffeine after 2 PM” versus their normal
+      routine for a selected number of nights.
+    - Compare duration, quality, latency, awakenings, and morning mood at the end.
+    - Clearly label results as personal observations, not scientific proof.
+
+19. Morning reflection journal
+    - Provide a 30-second check-in with mood, energy, dream recall, and one free-text reflection.
+    - Use optional Gemini summarization to identify recurring themes without exposing raw journal
+      text in analytics unless the user explicitly enables it.
+    - Add private mode and permanent delete controls.
+
+20. Circadian light planner
+    - Use the user's timezone and preferred wake time to recommend morning daylight and evening
+      dim-light windows.
+    - Include weather and location integrations only after explicit permission.
+    - Provide a manual mode for users who do not want location access.
+
+21. Explainable AI sleep coach
+    - Every AI recommendation should show “Why this was suggested,” the supporting user data,
+      the date range, and a confidence level.
+    - Add thumbs-up/down feedback and a “not relevant” action to improve future suggestions.
+    - Keep a versioned history of prompts, model responses, and user feedback for auditing.
+
+22. Human-support escalation
+    - Add a configurable red-flag screen for persistent severe sleep disruption, dangerous
+      daytime sleepiness, or other concerning user-reported symptoms.
+    - Present a calm recommendation to contact a qualified healthcare professional, with local
+      emergency guidance where appropriate.
+    - Never diagnose a condition or delay urgent care.
+
+23. Privacy center and data controls
+    - Add a visual privacy dashboard showing what data is collected, why it is used, and which
+      features have access to it.
+    - Provide download-all-data, delete-selected-data, revoke-AI-access, and delete-account flows.
+    - Add consent history, retention settings, and a clear third-party integration disconnect flow.
+
+24. Community challenges without social pressure
+    - Offer optional private challenges such as a seven-day consistent wake-time challenge.
+    - Support anonymous aggregate benchmarks only after opt-in.
+    - Do not expose individual sleep records, rankings, or health data to other users.
+
+25. Multilingual sleep education
+    - Translate educational content, onboarding, reminders, and safety messages using reviewed
+      translations rather than translating medical guidance automatically at runtime.
+    - Save language preference per account and keep dates, times, and units locale-aware.
+
+26. Accessibility-first sleep mode
+    - Add high contrast, large text, keyboard-only operation, screen-reader announcements,
+      reduced motion, and a low-brightness night theme.
+    - Ensure all charts have a data-table alternative and all color meaning has a text equivalent.
+
+27. Trusted-caregiver sharing
+    - Let a user grant time-limited, read-only access to a trusted person or clinician.
+    - Require explicit consent, visible access history, revocation, and automatic expiry.
+    - Share summaries only; never share journal text or raw health data by default.
+
+28. Responsible gamification
+    - Reward learning, consistency, and self-awareness rather than encouraging users to chase
+      a perfect score or stay in bed longer than is healthy.
+    - Add “rest days,” streak protection, and compassionate copy for irregular schedules.
+
+29. Personal data quality assistant
+    - Detect missing, duplicate, or implausible entries before they distort analytics.
+    - Ask the user to confirm unusual values and explain how corrections affect reports.
+    - Show a data completeness percentage with a link to fix missing days.
+
+30. Progressive integrations
+    - Design a provider-neutral integration layer so wearable, Google Fit, Apple Health, and
+      future devices can be added without changing the core domain model.
+    - Store source, synchronization time, permissions, and provenance for every imported value.
+    - Let users override imported values while preserving the original source record.

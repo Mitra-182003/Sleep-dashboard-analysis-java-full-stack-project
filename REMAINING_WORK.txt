@@ -1,0 +1,95 @@
+DREAMBETTER - REMAINING WORK ROADMAP
+=====================================
+
+Non-negotiable architecture
+---------------------------
+- This project must be Java full stack only for application development.
+- Use Java 17+ and Spring Boot for the backend, REST APIs, validation, security,
+  scheduled reminders, Gemini integration, and Supabase access.
+- Use Supabase Auth for authentication.
+- Use Supabase Postgres for website/application data.
+- Do not add a Node.js, Express, Python, or other backend.
+
+Phase 1 - Foundation
+--------------------
+1. Create the Spring Boot package structure under backend/src/main/java/com/dreambetter.
+2. Add Spring Web, Validation, Security, OAuth2/JWT verification, PostgreSQL/Supabase
+   client support, and test dependencies to pom.xml.
+3. Configure environment variables and profiles:
+   SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_DB_URL,
+   SUPABASE_DB_USERNAME, SUPABASE_DB_PASSWORD, GEMINI_API_KEY, and frontend
+   API base URL.
+4. Add a global exception handler, request validation, structured logging, CORS,
+   security headers, and health endpoints.
+
+Phase 2 - Supabase authentication
+----------------------------------
+1. Create a Supabase project and enable the Google provider.
+2. Configure authorized domains for Google popup authentication.
+3. Add the Supabase Web SDK to the frontend for Google sign-in.
+4. Send Supabase access tokens to Java endpoints over HTTPS.
+5. Verify tokens in Spring Security using Supabase JWKS.
+6. Map Supabase user ID, email, display name, and provider identities to a local user.
+7. Implement account linking, logout, refresh/session expiry, recovery, consent,
+   and account deletion.
+
+Phase 3 - Supabase database
+---------------------------
+1. Create Supabase tables: users, sleep_logs, lifestyle_logs, goals, reminders,
+   insights, reports, and audit_events.
+2. Add primary keys, foreign keys, UTC timestamps, indexes, constraints, and migrations.
+3. Enforce that users can read and modify only their own records.
+4. Access Supabase from the Java service layer; never put a Supabase service key in HTML or JS.
+5. Implement repositories/services and DTOs for CRUD operations with pagination and filtering.
+
+Phase 4 - Core product features
+-------------------------------
+1. Connect the current zero-data dashboard to GET /api/dashboard/summary.
+2. Connect sleep-log.html to POST/PATCH/DELETE /api/sleep-logs.
+3. Connect lifestyle.html to POST/PATCH/DELETE /api/lifestyle-logs.
+4. Add server-side duration, quality, date, timezone, and ownership validation.
+5. Add goals, reminders, streaks, onboarding preferences, profile, and settings APIs.
+6. Replace demo/static values across analytics, reports, profile, and settings with API data.
+7. Add loading, empty, error, retry, and unsaved-form states to every connected screen.
+
+Phase 5 - Gemini API integration
+--------------------------------
+1. Add a Java Gemini client service using the official Google GenAI Java SDK or a
+   supported HTTPS client.
+2. Keep GEMINI_API_KEY only on the server and proxy all AI requests through Spring Boot.
+3. Build a strict prompt template that includes only the user's authorized,
+   minimized sleep/lifestyle data.
+4. Request structured JSON for insight title, summary, evidence, recommendations,
+   confidence, and safety message; validate the response before returning it.
+5. Add rate limits, timeout/retry policy, token/cost controls, audit logging, and redaction.
+6. Add medical disclaimer and escalation messaging. Do not generate diagnoses.
+7. Implement AI insights page and question history with user-owned persistence.
+
+Phase 6 - Professional UX enhancements
+---------------------------------------
+1. Replace text-symbol icons with a consistent SVG icon set.
+2. Add breadcrumbs, keyboard focus rings, ARIA labels/live regions, and full keyboard navigation.
+3. Add loading skeletons, subtle page/card animations, reduced-motion handling, and mobile drawer.
+4. Add onboarding checklist, goal progress, notification center, and theme preference.
+5. Add calendar-based sleep history, naps, interruptions, and editable entries.
+6. Add PDF/CSV report generation through Java and secure download endpoints.
+
+Phase 7 - Quality and release
+-----------------------------
+1. Add JUnit/Mockito service tests and Spring MockMvc controller tests.
+2. Add Testcontainers integration tests for the database boundary where appropriate.
+3. Add frontend browser tests for authentication, first sleep entry, empty states,
+   validation, responsive navigation, and API failures.
+4. Run accessibility checks, dependency scans, secret scans, and performance checks.
+5. Add CI/CD, environment-specific configuration, database migration execution,
+   backups, monitoring, alerting, and deployment documentation.
+6. Conduct a privacy review for health-related data, consent, deletion, retention,
+   and data export before production release.
+
+Current implementation status
+-----------------------------
+- Frontend information architecture and requested pages: started.
+- Professional navigation animation and mobile navigation drawer: implemented.
+- Dashboard and sleep-log initial state: zero-data state implemented.
+- Spring Boot application bootstrap and base configuration: started.
+- Supabase, Gemini, persistence, production security, and tests: remaining work.
